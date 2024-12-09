@@ -21,6 +21,7 @@ def create_chain_of_thought(query, openai_client):
 - Be explicit about any uncertainties or assumptions in your reasoning.
 
 **Response Format:**
+Create the chain of thought in the language in which you are spoken or in the language you are told to speak if you are instructed to do so, otherwise in the language in which you are spoken.
 Respond in JSON format with the following keys for each step of the chain that you think needs to be done:
 - "title": A brief title for the reasoning step.
 - "content": Detailed explanation of the reasoning step.

@@ -7,14 +7,13 @@ def refine_with_execution(query, current_cot, iterations, openai_client):
         # Si es la última iteración, cambia el mensaje para que no use código
         if i == iterations - 1:
             system_message = (
-                """Eres un AI que refina soluciones dinámicamente. En esta última iteración, 
-                presenta la respuesta final de la mejor manera posible, con todo lo que has razonado antes. Usa todo lo que has aprendido durante las iteraciones previas y cuentale al usuario todo lo que piensas y tu conclusión final."""
+                """You are an AI that dynamically refines solutions. In this last iteration, present the final answer in the best possible way, with everything you have reasoned before. Use everything you have learned during the previous iterations and tell the user everything you think and your final conclusion."""
             )
         else:
             system_message = (
-                """Eres un AI que refina soluciones dinámicamente, utilizando código ejecutable solo cuando sea necesario para obtener información del texto o realizar tareas específicas que lo requieran. Por ejemplo analizar partes de textos, etc, que la IA puede liarse debido a que divide en tokens y no en letras. 
-Por ejemplo, si te piden encontrar nombres de comunidades autónomas que terminen en "ia", usarás código para comprobarlo. 
-Sin embargo, para otros tipos de respuestas, como explicaciones o análisis que no impliquen procesamiento de datos específicos, no usarás código y proporcionarás la información directamente."""
+                """You are an AI that refines solutions dynamically, using executable code only when necessary to obtain information from text or perform specific tasks that require it. For example, analyzing parts of texts, etc., which the AI may confuse because it divides into tokens and not letters. 
+When asked to perform tasks that involve finding patterns in words or performing specific searches, such as identifying items within a list that meet certain conditions, use code. Do not use libraries that are not native to Python. Include everything in the same code if you use code and use the complete code, do not go half way because it is the necessary code that you must use for your reasoning. Remember in the code to use the words of the language in which you are spoken, if you are asked to order numbers in Spanish alphabetically you must write the series of numbers in Spanish. Try to make the code as simple as possible to avoid errors but without removing what makes it work. If you see code that is wrong you can also improve it. Always pay attention to what the resulting code says unless it is very strange, never play it down because it is almost always right, if the code says it, try to find an explanation and say what it returns.
+However, for other types of answers, such as explanations or analyses that do not involve specific data processing, do not use code and provide the information directly. Remember to use the solutions according to the language in which they speak to you, if they ask you in Spanish, reason in Spanish and do everything in Spanish unless they tell you otherwise."""
             )
         
         # Generar la respuesta del modelo
